@@ -14,6 +14,12 @@ import { FabActionsComponent } from './core/fab-actions/fab-actions.component';
 import { PageShoppingListComponent } from './features/page-shopping-list/page-shopping-list.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NewShoppingListComponent } from './shared/components/dialog/new-shopping-list/new-shopping-list.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { FormsModule } from '@angular/forms';
+import { MonthlyGroceriesComponent } from './features/page-shopping-list/components/monthly-groceries/monthly-groceries.component';
+import {MatListModule} from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -24,15 +30,21 @@ import { NewShoppingListComponent } from './shared/components/dialog/new-shoppin
     FabActionsComponent,
     PageShoppingListComponent,
     GroceryHistoryListComponent,
-    NewShoppingListComponent
+    NewShoppingListComponent,
+    MonthlyGroceriesComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule 
+    MatDialogModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatListModule
   ],
   entryComponents: [
     NewShoppingListComponent

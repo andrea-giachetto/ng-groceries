@@ -13,7 +13,14 @@ import { Component, OnInit } from '@angular/core';
 export class PageShoppingListComponent implements OnInit {
 
   constructor() { }
-
+  // I should get the shopping list by month from the backend like so:
+  /*
+    {
+      'october': ShoppingList[],
+      'november': ShoppingList[],
+      ...
+    }
+  */
   ngOnInit(): void {
   }
 

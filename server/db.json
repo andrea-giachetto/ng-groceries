@@ -1,0 +1,20 @@
+{
+  "shopping-list": {
+    "november": [
+      {
+        "name": "Coop",
+        "state": "In progress"
+      },
+      {
+        "name": "Migros",
+        "state": "Done",
+        "amount": 104.35
+      },
+      {
+        "name": "Denner",
+        "state": "Done",
+        "amount": 84.23
+      }
+    ]
+  }
+}

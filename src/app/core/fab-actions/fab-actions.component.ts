@@ -49,7 +49,7 @@ export class FabActionsComponent implements OnInit {
     const dialogRef = this.dialog.open(NewShoppingListComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      //console.log(`Dialog result: ${result}`);
+      console.log(result);
     });
   }
 

@@ -5,10 +5,17 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <div class="grocery-history">
       <div class="grocery-history--wrapper">
-        <div class="grocery-history--no-items">
-          <img src="../../../../../assets/icons/grocery-history-empty.svg">
-          <p>You don’t have any shopping list yet. <br> Do you want to create one?<br> C’mon, don’t be shy!</p>
+        <div *ngIf="hasItems; else noItems">
+          <app-monthly-groceries month="November"></app-monthly-groceries>
         </div>
+
+        <ng-template #noItems>
+          <div class="grocery-history--no-items">
+            <img src="../../../../../assets/icons/grocery-history-empty.svg">
+            <p>You don’t have any shopping list yet. <br> Do you want to create one?<br> C’mon, don’t be shy!</p>
+          </div>
+        </ng-template>
+
       </div>
     </div>
   `,
@@ -19,12 +26,12 @@ import { Component, OnInit } from '@angular/core';
   `]
 })
 export class GroceryHistoryListComponent implements OnInit {
-
+  hasItems: boolean = true //this.items.length >= 1;
   constructor() { }
 
   ngOnInit(): void {
   }
 
- 
+
 
 }
