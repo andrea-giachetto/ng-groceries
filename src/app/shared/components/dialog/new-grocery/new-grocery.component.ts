@@ -1,4 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Grocery } from '../../../../model/grocery.model';
+import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 
@@ -17,7 +18,7 @@ import { MatDialogRef } from '@angular/material/dialog';
           <input
             matInput
             type="text"
-            name="shoppingListName"
+            name="name"
             [ngModel]
           >
         </mat-form-field>
@@ -27,7 +28,7 @@ import { MatDialogRef } from '@angular/material/dialog';
           <input
             matInput
             [matDatepicker]="picker1"
-            name="shoppingListDate"
+            name="deadline"
             [ngModel]
           >
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -49,18 +50,15 @@ import { MatDialogRef } from '@angular/material/dialog';
     .mat-button {letter-spacing: 1px; color: #54C6EB}
   `]
 })
-export class NewShoppingListComponent implements OnInit {
+export class NewGroceryComponent {
 
   constructor(
-    public dialogRef: MatDialogRef<NewShoppingListComponent>,
+    public dialogRef: MatDialogRef<NewGroceryComponent>,
   ) { }
 
-  ngOnInit(): void {
-  }
-
-  submit(form: NgForm) {
-    console.log(form);
-    this.dialogRef.close(form.value);
+  submit(f: NgForm) {
+    const grocery: Grocery = f.value as Grocery;
+    this.dialogRef.close(grocery);
   }
 
 }

@@ -1,6 +1,9 @@
+import { addGrocery } from '../../features/page-shopping-list/store/actions/groceries.action';
+import { Grocery } from '../../model/grocery.model';
 import { Component, OnInit } from '@angular/core';
 import { NewShoppingListComponent } from 'src/app/shared/components/dialog/new-shopping-list/new-shopping-list.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-fab-actions',
@@ -38,18 +41,21 @@ import { MatDialog } from '@angular/material/dialog';
 export class FabActionsComponent implements OnInit {
   isClicked: boolean = false;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private store: Store<Grocery>
+    ) { }
 
   ngOnInit(): void {
   }
 
   openDialog() {
     this.toggleActionsList();
-    
+
     const dialogRef = this.dialog.open(NewShoppingListComponent);
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    dialogRef.afterClosed().subscribe((grocery: Grocery) => {
+      this.store.dispatch(addGrocery({ grocery }))
     });
   }
 

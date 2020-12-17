@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { addGrocery, deleteGrocery } from '../../store/actions/groceries.action';
+import { Grocery } from '../../../../model/grocery.model';
+import { Component, OnInit, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-grocery-history-list',
@@ -6,7 +9,6 @@ import { Component, OnInit } from '@angular/core';
     <div class="grocery-history">
       <div class="grocery-history--wrapper">
         <div *ngIf="hasItems; else noItems">
-          <app-monthly-groceries month="November"></app-monthly-groceries>
         </div>
 
         <ng-template #noItems>
@@ -26,12 +28,13 @@ import { Component, OnInit } from '@angular/core';
   `]
 })
 export class GroceryHistoryListComponent implements OnInit {
-  hasItems: boolean = true //this.items.length >= 1;
-  constructor() { }
+
+  @Input() list: Grocery[] | [] = [];
+  hasItems: boolean = this.list.length > 1;
+
+  constructor(private store: Store<any>) { }
 
   ngOnInit(): void {
   }
-
-
 
 }

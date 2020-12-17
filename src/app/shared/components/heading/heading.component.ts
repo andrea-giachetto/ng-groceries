@@ -12,7 +12,7 @@ import { Component, OnInit } from '@angular/core';
     </header>
   `,
   styles: [`
-    .header {width: 100%; height: 240px; text-align: center; display: flex; align-items: center; }
+    .header {width: 100%; position: relative; overflow: hidden; height: 240px; text-align: center; display: flex; align-items: center; }
     .header img {width: 100%; position: absolute; top: 0; left: 0; z-index: -1;}
     .header .header--text { width: 100%;}
     .header .header--text h3 {font-size: 24px; line-height: 28px; font-weight: bold; color: white;}
