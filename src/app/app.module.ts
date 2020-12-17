@@ -18,7 +18,6 @@ import { MatInputModule} from '@angular/material/input';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
-import { MonthlyGroceriesComponent } from './features/page-shopping-list/components/monthly-groceries/monthly-groceries.component';
 import { MatListModule} from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';

@@ -1,4 +1,4 @@
-import { addGrocery, deleteGrocery } from '../../store/actions/groceries.action';
+import { addGrocery, deleteGrocery } from '../../store/actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { Store } from '@ngrx/store';

@@ -4,7 +4,7 @@ import { GroceryHistoryListComponent } from './components/grocery-history-list/g
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadGroceries } from './store/actions/groceries.action';
+import { loadGroceries } from './store/actions/groceries.actions';
 
 @Component({
   selector: 'app-page-shopping-list',

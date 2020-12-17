@@ -1,5 +1,5 @@
 import { Grocery } from '../../../../model/grocery.model';
-import { loadGroceries, loadGroceriesSuccess, loadGroceriesFailed } from '../actions/groceries.action';
+import { loadGroceries, loadGroceriesSuccess, loadGroceriesFailed } from '../actions/groceries.actions';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { createEffect, Actions, ofType } from '@ngrx/effects'

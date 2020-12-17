@@ -1,5 +1,5 @@
 import { Grocery } from '../../../../model/grocery.model';
-import { addGrocery, deleteGrocery, loadGroceriesSuccess, setActiveGrocery } from '../actions/groceries.action';
+import { addGrocery, deleteGrocery, loadGroceriesSuccess, setActiveGrocery } from '../actions/groceries.actions';
 import { ActionsSubject, createReducer, on } from '@ngrx/store';
 
 export interface GroceryAppState {

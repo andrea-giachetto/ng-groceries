@@ -1,7 +1,7 @@
-import { addGrocery } from '../../features/page-shopping-list/store/actions/groceries.action';
+import { addGrocery } from '../../features/groceries-list/store/actions/groceries.actions';
 import { Grocery } from '../../model/grocery.model';
 import { Component, OnInit } from '@angular/core';
-import { NewShoppingListComponent } from 'src/app/shared/components/dialog/new-shopping-list/new-shopping-list.component';
+import { NewGroceryComponent } from 'src/app/shared/components/dialog/new-grocery/new-grocery.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
@@ -52,7 +52,7 @@ export class FabActionsComponent implements OnInit {
   openDialog() {
     this.toggleActionsList();
 
-    const dialogRef = this.dialog.open(NewShoppingListComponent);
+    const dialogRef = this.dialog.open(NewGroceryComponent);
 
     dialogRef.afterClosed().subscribe((grocery: Grocery) => {
       this.store.dispatch(addGrocery({ grocery }))
