@@ -57,7 +57,7 @@ export class NewGroceryComponent {
   ) { }
 
   submit(f: NgForm) {
-    const grocery: Grocery = f.value as Grocery;
+    const grocery: Grocery = { ...f.value, state: 'In progress' } as Grocery;
     this.dialogRef.close(grocery);
   }
 

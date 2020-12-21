@@ -3,13 +3,13 @@ import { Grocery } from '../../../../model/grocery.model';
 import { addGrocery, deleteGrocery, loadGroceriesSuccess, setActiveGrocery } from '../actions/groceries.actions';
 import { createReducer, on } from '@ngrx/store';
 
-export interface GroceryAppState {
-  groceries: Grocery[],
+export interface GroceriesState {
+  list: Grocery[],
   active?: Grocery;
 }
 
-const initialState: GroceryAppState = {
-  groceries: [],
+const initialState: GroceriesState = {
+  list: [],
   active: {} as Grocery
 };
 
@@ -19,28 +19,28 @@ export const groceriesReducer = createReducer(
   on(loadGroceriesSuccess, (state, action) => {
     return {
       ...state,
-      groceries: action.groceries
+      list: action.list
     }
   }),
 
   on(addGrocerySuccess, (state, action) => {
     return {
       ...state,
-      groceries: [...state.groceries, {...action.grocery }]
+      list: [...state.list, {...action.item }]
     }
   }),
 
   on(deleteGrocery, (state, action) => {
     return {
       ...state,
-      groceries: state.groceries.filter(item => item.id !== action.id )
+      list: state.list.filter(item => item.id !== action.id )
     }
   }),
 
   on(setActiveGrocery, (state, action) => {
     return {
       ...state,
-    active: { ...action.grocery }
+    active: { ...action.item }
     }
   }),
 

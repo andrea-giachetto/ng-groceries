@@ -7,7 +7,7 @@ export const loadGroceries = createAction(
 
 export const loadGroceriesSuccess = createAction(
   '[Grocery] load success from API',
-  props<{ groceries: Grocery[] }>()
+  props<{ list: Grocery[] }>()
 )
 
 export const addGrocery = createAction(
@@ -17,7 +17,7 @@ export const addGrocery = createAction(
 
 export const addGrocerySuccess = createAction(
   '[Grocery] add grocery success',
-  props<{ grocery: Grocery }>()
+  props<{ item: Grocery }>()
 )
 
 export const addGroceryFailed = createAction(
@@ -35,5 +35,5 @@ export const deleteGrocery = createAction(
 
 export const setActiveGrocery = createAction(
   '[Grocery] set active',
-  props<{ grocery: Grocery }>()
+  props<{ item: Grocery }>()
 )

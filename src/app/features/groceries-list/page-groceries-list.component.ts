@@ -1,4 +1,3 @@
-import { GroceryAppState } from './store/reducers/groceries.reducer';
 import { Grocery } from '../../model/grocery.model';
 import { GroceryHistoryListComponent } from './components/grocery-history-list/grocery-history-list.component';
 import { Component, OnInit } from '@angular/core';
@@ -31,7 +30,7 @@ export class PageGroceriesListComponent implements OnInit {
 
   groceries$: Observable<Grocery[]> = this.store.pipe(select('groceries'))
 
-  constructor(private store: Store<GroceryAppState>) {
+  constructor(private store: Store<AppState>) {
     this.store.dispatch(loadGroceries());
    }
 

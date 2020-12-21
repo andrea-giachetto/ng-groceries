@@ -15,7 +15,7 @@ export class GroceriesEffects {
       ofType(loadGroceries),
       switchMap(() => this.http.get<Grocery[]>('http://localhost:3001/groceries')
         .pipe(
-          map(result => loadGroceriesSuccess({ groceries: result })),
+          map(result => loadGroceriesSuccess({ list: result })),
           catchError(() => of(loadGroceriesFailed()))
         ))
     )
@@ -24,10 +24,9 @@ export class GroceriesEffects {
   addGrocery$ = createEffect(
     () => this.actions$.pipe(
       ofType(addGrocery),
-      tap((item => console.log(item))),
       switchMap((action) => this.http.post<Grocery>('http://localhost:3001/groceries', action.grocery)
         .pipe(
-          map(result => addGrocerySuccess({ grocery: result })),
+          map(result => addGrocerySuccess({ item: result })),
           catchError(() => of(addGroceryFailed()))
         ))
     )

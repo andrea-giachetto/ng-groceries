@@ -1,3 +1,4 @@
+import { reducers } from './features/groceries-list/store/reducers/index';
 import { GroceriesEffects } from './features/groceries-list/store/effects/groceries.effects';
 import { GroceryHistoryListComponent } from './features/groceries-list/components/grocery-history-list/grocery-history-list.component';
 import { TestComp } from './test.component';
@@ -21,9 +22,13 @@ import { FormsModule } from '@angular/forms';
 import { MatListModule} from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { groceriesReducer } from './features/groceries-list/store/reducers/groceries.reducer';
+import { groceriesReducer, GroceriesState } from './features/groceries-list/store/reducers/groceries.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+
+export interface AppState {
+  groceries: GroceriesState
+}
 
 @NgModule({
   declarations: [
@@ -49,9 +54,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatDatepickerModule,
     MatNativeDateModule,
     MatListModule,
-    StoreModule.forRoot({
-      groceries: groceriesReducer
-    }),
+    StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
