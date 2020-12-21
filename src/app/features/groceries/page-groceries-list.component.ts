@@ -1,7 +1,5 @@
 import { selectAllGroceries } from './store/selectors/groceries.selectors';
-import { GroceriesState } from './store/reducers/groceries.reducer';
 import { Grocery } from '../../model/grocery.model';
-import { GroceryHistoryListComponent } from './components/grocery-history-list/grocery-history-list.component';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -13,8 +11,9 @@ import { AppState } from 'src/app/app.module';
   template: `
     <app-heading></app-heading>
     <!-- <pre>{{ groceries$ | async | json}}</pre> -->
-    <mat-selection-list [multiple]="false">
+    <div *ngIf="(groceries$ | async).length; else noItems">
 
+    <mat-selection-list [multiple]="false">
         <mat-list-option *ngFor="let grocery of (groceries$ | async)">
           {{grocery.name}}
           <span>
@@ -22,11 +21,23 @@ import { AppState } from 'src/app/app.module';
             <p *ngIf="grocery.amount">CHF {{grocery.amount}}</p>
           </span>
         </mat-list-option>
+      </mat-selection-list>
 
-    </mat-selection-list>
+    </div>
+
+    <ng-template #noItems>
+
+      <div class="grocery-history--no-items">
+        <img src="../../../../../assets/icons/grocery-history-empty.svg">
+        <p>You don’t have any shopping list yet. <br> Do you want to create one?<br> C’mon, don’t be shy!</p>
+      </div>
+
+    </ng-template>
   `,
   styles: [`
     .mat-list-text span { display: flex; flex-direction: column;}
+    .grocery-history--no-items {display: flex; flex-direction: column; justify-content: center; text-align: center;}
+    .grocery-history--no-items img { margin: 0 0 30px 0;}
   `]
 })
 export class PageGroceriesListComponent implements OnInit {
