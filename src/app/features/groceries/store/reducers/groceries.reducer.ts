@@ -1,4 +1,4 @@
-import { addGrocerySuccess } from './../actions/groceries.actions';
+import { addGrocerySuccess } from '../actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
 import { addGrocery, deleteGrocery, loadGroceriesSuccess, setActiveGrocery } from '../actions/groceries.actions';
 import { createReducer, on } from '@ngrx/store';

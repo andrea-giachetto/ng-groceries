@@ -1,4 +1,4 @@
-import { addGrocerySuccess, addGroceryFailed } from './../actions/groceries.actions';
+import { addGrocerySuccess, addGroceryFailed } from '../actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
 import { loadGroceries, loadGroceriesSuccess, loadGroceriesFailed, addGrocery } from '../actions/groceries.actions';
 import { HttpClient } from '@angular/common/http';

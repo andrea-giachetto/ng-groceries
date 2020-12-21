@@ -1,6 +1,6 @@
-import { reducers } from './features/groceries-list/store/reducers/index';
-import { GroceriesEffects } from './features/groceries-list/store/effects/groceries.effects';
-import { GroceryHistoryListComponent } from './features/groceries-list/components/grocery-history-list/grocery-history-list.component';
+import { reducers } from './features/groceries/store/reducers/index';
+import { GroceriesEffects } from './features/groceries/store/effects/groceries.effects';
+import { GroceryHistoryListComponent } from './features/groceries/components/grocery-history-list/grocery-history-list.component';
 import { TestComp } from './test.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -12,7 +12,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatButtonModule} from '@angular/material/button';
 import { HeadingComponent } from './shared/components/heading/heading.component';
 import { FabActionsComponent } from './core/fab-actions/fab-actions.component';
-import { PageGroceriesListComponent } from './features/groceries-list/page-groceries-list.component';
+import { PageGroceriesListComponent } from './features/groceries/page-groceries-list.component';
 import { MatDialogModule} from '@angular/material/dialog';
 import { NewGroceryComponent } from './shared/components/dialog/new-grocery/new-grocery.component';
 import { MatInputModule} from '@angular/material/input';
@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { MatListModule} from '@angular/material/list';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { groceriesReducer, GroceriesState } from './features/groceries-list/store/reducers/groceries.reducer';
+import { groceriesReducer, GroceriesState } from './features/groceries/store/reducers/groceries.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 
