@@ -1,5 +1,6 @@
+import { addGrocerySuccess, addGroceryFailed } from './../actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
-import { loadGroceries, loadGroceriesSuccess, loadGroceriesFailed } from '../actions/groceries.actions';
+import { loadGroceries, loadGroceriesSuccess, loadGroceriesFailed, addGrocery } from '../actions/groceries.actions';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { createEffect, Actions, ofType } from '@ngrx/effects'
@@ -14,9 +15,20 @@ export class GroceriesEffects {
       ofType(loadGroceries),
       switchMap(() => this.http.get<Grocery[]>('http://localhost:3001/groceries')
         .pipe(
-          tap(result => console.log(result)),
           map(result => loadGroceriesSuccess({ groceries: result })),
           catchError(() => of(loadGroceriesFailed()))
+        ))
+    )
+  )
+
+  addGrocery$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(addGrocery),
+      tap((item => console.log(item))),
+      switchMap((action) => this.http.post<Grocery>('http://localhost:3001/groceries', action.grocery)
+        .pipe(
+          map(result => addGrocerySuccess({ grocery: result })),
+          catchError(() => of(addGroceryFailed()))
         ))
     )
   )

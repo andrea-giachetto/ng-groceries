@@ -10,23 +10,18 @@ import { loadGroceries } from './store/actions/groceries.actions';
   selector: 'app-page-shopping-list',
   template: `
     <app-heading></app-heading>
-    <ul>
-      <li>
-        <a>
-        <pre>{{ groceries$ | async | json }}</pre>
-          <!-- <mat-selection-list [multiple]="false">
-            <mat-list-option *ngFor="let grocery of (groceries$ | async)">
-              {{grocery.name}}
-              <span>
-                <label [ngClass]="grocery.state === 'In progress' ? 'in-progress' : 'done'">{{grocery.state}}</label>
-                <p *ngIf="grocery.amount">CHF {{grocery.amount}}</p>
-              </span>
-            </mat-list-option>
-          </mat-selection-list> -->
-        </a>
-      </li>
-    </ul>
-    <!-- <app-grocery-history-list></app-grocery-history-list> -->
+    <!-- <pre>{{ groceries$ | async | json}}</pre> -->
+    <mat-selection-list [multiple]="false">
+
+        <mat-list-option *ngFor="let grocery of (groceries$ | async).groceries">
+          {{grocery.name}}
+          <span>
+            <label [ngClass]="grocery.state === 'In progress' ? 'in-progress' : 'done'">{{grocery.state}}</label>
+            <p *ngIf="grocery.amount">CHF {{grocery.amount}}</p>
+          </span>
+        </mat-list-option>
+
+    </mat-selection-list>
   `,
   styles: [`
     .mat-list-text span { display: flex; flex-direction: column;}
@@ -34,11 +29,10 @@ import { loadGroceries } from './store/actions/groceries.actions';
 })
 export class PageGroceriesListComponent implements OnInit {
 
-  groceries$: Observable<Grocery[]> = this.store.pipe(select((state: GroceryAppState) => state.groceries))
+  groceries$: Observable<Grocery[]> = this.store.pipe(select('groceries'))
 
-  constructor(private store: Store<any>) {
+  constructor(private store: Store<GroceryAppState>) {
     this.store.dispatch(loadGroceries());
-    console.log(this.groceries$);
    }
 
   ngOnInit(): void {

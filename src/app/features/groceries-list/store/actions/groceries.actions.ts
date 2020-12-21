@@ -1,11 +1,6 @@
 import { Grocery } from '../../../../model/grocery.model';
 import { createAction, props } from '@ngrx/store';
 
-export const addGrocery = createAction(
-  '[Grocery] add',
-  props<{ grocery: Grocery }>()
-)
-
 export const loadGroceries = createAction(
   '[Grocery] load'
 )
@@ -13,6 +8,20 @@ export const loadGroceries = createAction(
 export const loadGroceriesSuccess = createAction(
   '[Grocery] load success from API',
   props<{ groceries: Grocery[] }>()
+)
+
+export const addGrocery = createAction(
+  '[Grocery] add',
+  props<{ grocery: Grocery }>()
+)
+
+export const addGrocerySuccess = createAction(
+  '[Grocery] add grocery success',
+  props<{ grocery: Grocery }>()
+)
+
+export const addGroceryFailed = createAction(
+  '[Grocery] add grocery failed'
 )
 
 export const loadGroceriesFailed = createAction(

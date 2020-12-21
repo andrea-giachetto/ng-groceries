@@ -1,6 +1,7 @@
+import { addGrocerySuccess } from './../actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
 import { addGrocery, deleteGrocery, loadGroceriesSuccess, setActiveGrocery } from '../actions/groceries.actions';
-import { ActionsSubject, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 export interface GroceryAppState {
   groceries: Grocery[],
@@ -22,10 +23,10 @@ export const groceriesReducer = createReducer(
     }
   }),
 
-  on(addGrocery, (state, action) => {
+  on(addGrocerySuccess, (state, action) => {
     return {
       ...state,
-      groceries: [...state.groceries, {...action.grocery, id: Date.now() }]
+      groceries: [...state.groceries, {...action.grocery }]
     }
   }),
 

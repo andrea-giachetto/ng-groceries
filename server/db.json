@@ -1,18 +1,31 @@
 {
   "groceries": [
     {
+      "id": "1",
       "name": "Coop",
       "state": "In progress"
     },
     {
+      "id": "2",
       "name": "Migros",
       "state": "Done",
       "amount": 104.35
     },
     {
+      "id": "3",
       "name": "Denner",
       "state": "Done",
       "amount": 84.23
+    },
+    {
+      "name": "xgbfgdb",
+      "deadline": null,
+      "id": "S8Wu1OT"
+    },
+    {
+      "name": "Spesa per natale",
+      "deadline": null,
+      "id": "ViCpCeQ"
     }
   ]
 }
