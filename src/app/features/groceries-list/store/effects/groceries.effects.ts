@@ -7,13 +7,15 @@ import { createEffect, Actions, ofType } from '@ngrx/effects'
 import { map, switchMap, catchError, tap } from 'rxjs/operators'
 import { of } from 'rxjs'
 
+const API_ENDPOINT = 'http://192.168.8.113:3001'
+
 @Injectable()
 export class GroceriesEffects {
 
   loadGroceries$ = createEffect(
     () => this.actions$.pipe(
       ofType(loadGroceries),
-      switchMap(() => this.http.get<Grocery[]>('http://localhost:3001/groceries')
+      switchMap(() => this.http.get<Grocery[]>(`${API_ENDPOINT}/groceries`)
         .pipe(
           map(result => loadGroceriesSuccess({ list: result })),
           catchError(() => of(loadGroceriesFailed()))
@@ -24,7 +26,7 @@ export class GroceriesEffects {
   addGrocery$ = createEffect(
     () => this.actions$.pipe(
       ofType(addGrocery),
-      switchMap((action) => this.http.post<Grocery>('http://localhost:3001/groceries', action.grocery)
+      switchMap((action) => this.http.post<Grocery>(`${API_ENDPOINT}/groceries`, action.grocery)
         .pipe(
           map(result => addGrocerySuccess({ item: result })),
           catchError(() => of(addGroceryFailed()))
