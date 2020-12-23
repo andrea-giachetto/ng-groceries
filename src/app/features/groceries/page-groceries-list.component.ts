@@ -1,3 +1,4 @@
+import * as RouterAction from './../../core/router/store/router.actions';
 import { selectAllGroceries } from './store/selectors/groceries.selectors';
 import { Grocery } from '../../model/grocery.model';
 import { Component, OnInit } from '@angular/core';
@@ -5,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { loadGroceries } from './store/actions/groceries.actions';
 import { AppState } from 'src/app/app.module';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-page-shopping-list',
@@ -14,7 +16,7 @@ import { AppState } from 'src/app/app.module';
     <div *ngIf="(groceries$ | async).length; else noItems">
 
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let grocery of (groceries$ | async)">
+        <mat-list-option *ngFor="let grocery of (groceries$ | async)" (click)="goToDetailPage()">
           {{grocery.name}}
           <span>
             <label [ngClass]="grocery.state === 'In progress' ? 'in-progress' : 'done'">{{grocery.state}}</label>
@@ -44,11 +46,18 @@ export class PageGroceriesListComponent implements OnInit {
 
   groceries$: Observable<Grocery[]> = this.store.pipe(select(selectAllGroceries))
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    private route: ActivatedRoute
+  ) {
     this.store.dispatch(loadGroceries());
    }
 
   ngOnInit(): void {
+  }
+
+  goToDetailPage() {
+    this.store.dispatch(RouterAction.goToGroceryDetailPage({path: ['groceries/details']}))
   }
 
 }

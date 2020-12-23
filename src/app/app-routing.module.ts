@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'groceries', loadChildren: () => import('./features/groceries/groceries.module').then(m => m.GroceriesModule) },
   { path: 'products', loadChildren: () => import('./features/products/products.module').then(m => m.ProductsModule) },
   { path: 'settings', loadChildren: () => import('./features/settings/settings.module').then(m => m.SettingsModule) },
-  { path: '**', loadChildren: () => import('./features/groceries/groceries.module').then(m => m.GroceriesModule) },
+  { path: '**', redirectTo: '/groceries'},
 ];
 
 @NgModule({
