@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <nav>
       <ul>
-        <li ><img src="../../../assets/icons/dark/shopping-list.svg"> <span>Shopping List</span></li>
+        <li><a routerLink="['/groceries']"><img src="../../../assets/icons/dark/shopping-list.svg"> <span>Shopping List</span></a></li>
         <li><img src="../../../assets/icons/dark/products.svg"> <span>Products</span></li>
         <li><img src="../../../assets/icons/dark/settings.svg"> <span>Settings</span></li>
       </ul>

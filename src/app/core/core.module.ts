@@ -1,3 +1,4 @@
+import { UiKitModule } from './../shared/ui-kit/ui-kit.module';
 import { reducers } from './../features/groceries/store/reducers/index';
 import { GroceriesEffects } from './../features/groceries/store/effects/groceries.effects';
 import { EffectsModule } from '@ngrx/effects';
@@ -11,9 +12,11 @@ import { RouterEffects } from './router/store/router.effects';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
+    UiKitModule,
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25
@@ -26,6 +29,7 @@ import { RouterEffects } from './router/store/router.effects';
       routerState: RouterState.Minimal
     })
   ],
-  exports: []
+  exports: [
+  ]
 })
 export class CoreModule { }

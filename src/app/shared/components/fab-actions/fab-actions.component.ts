@@ -1,5 +1,5 @@
-import { addGrocery } from '../../features/groceries/store/actions/groceries.actions';
-import { Grocery } from '../../model/grocery.model';
+import { addGrocery } from '../../../features/groceries/store/actions/groceries.actions';
+import { Grocery } from '../../../model/grocery.model';
 import { Component, OnInit } from '@angular/core';
 import { NewGroceryComponent } from 'src/app/shared/components/dialog/new-grocery/new-grocery.component';
 import { MatDialog } from '@angular/material/dialog';
