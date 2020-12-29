@@ -55,3 +55,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-selection-list.mat-list-base .mat-list-item, .mat-selection-list.mat-list-base .mat-list-option { height: 70px; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.12)}
 .mat-list-base .mat-list-item .mat-list-text, .mat-list-base .mat-list-option .mat-list-text {align-items: center;}
+
+/* Style for Product Select Dropdown */
+.mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option { height: auto!important}
+span.mat-option-text { display: flex; }
+span.mat-option-text img { margin: 0 10px 0 0; }
+
+/**/
+.safe-scroll { padding-bottom: 10vh;}

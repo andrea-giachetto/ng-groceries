@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
   template: `
     <nav>
       <ul>
-        <li><a routerLink="['/groceries']"><img src="../../../assets/icons/dark/shopping-list.svg"> <span>Shopping List</span></a></li>
-        <li><img src="../../../assets/icons/dark/products.svg"> <span>Products</span></li>
-        <li><img src="../../../assets/icons/dark/settings.svg"> <span>Settings</span></li>
+        <li (click)="navigateTo('groceries')"><img src="../../../assets/icons/dark/shopping-list.svg"> <span>Shopping List</span></li>
+        <li (click)="navigateTo('products')"><img src="../../../assets/icons/dark/products.svg"> <span>Products</span></li>
+        <li (click)="navigateTo('settings')"><img src="../../../assets/icons/dark/settings.svg"> <span>Settings</span></li>
       </ul>
     </nav>
   `,
@@ -20,9 +21,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  navigateTo(path?: string) {
+    this.router.navigate([path])
   }
 
 }

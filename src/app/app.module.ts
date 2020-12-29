@@ -8,9 +8,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GroceriesState } from './features/groceries/store/reducers/groceries.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterReducerState } from '@ngrx/router-store';
+import { ProductsState } from './features/groceries/store/reducers/products.reducer';
 
 export interface AppState {
   groceries: GroceriesState,
+  products: ProductsState,
   router: RouterReducerState
 }
 

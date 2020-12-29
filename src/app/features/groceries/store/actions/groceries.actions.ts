@@ -16,12 +16,12 @@ export const addGrocery = createAction(
 )
 
 export const addGrocerySuccess = createAction(
-  '[Grocery] add grocery success',
+  '[Grocery] add success',
   props<{ item: Grocery }>()
 )
 
 export const addGroceryFailed = createAction(
-  '[Grocery] add grocery failed'
+  '[Grocery] add failed'
 )
 
 export const loadGroceriesFailed = createAction(

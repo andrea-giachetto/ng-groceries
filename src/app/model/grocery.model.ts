@@ -10,5 +10,5 @@ export interface Grocery {
   completed?: Date;
   created?: Date;
   amount?: number;
-  shoppingItems?: Product[];
+  products?: Product[];
 }

@@ -16,7 +16,7 @@ import { ActivatedRoute } from '@angular/router';
     <div *ngIf="(groceries$ | async).length; else noItems">
 
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let grocery of (groceries$ | async)" (click)="goToDetailPage()">
+        <mat-list-option *ngFor="let grocery of (groceries$ | async)" (click)="goToDetailPage(grocery.id)">
           {{grocery.name}}
           <span>
             <label [ngClass]="grocery.state === 'In progress' ? 'in-progress' : 'done'">{{grocery.state}}</label>
@@ -56,8 +56,12 @@ export class PageGroceriesListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToDetailPage() {
-    this.store.dispatch(RouterAction.goToGroceryDetailPage({path: ['groceries/details']}))
+  goToDetailPage(id: string) {
+    this.store.dispatch(
+      RouterAction.goToGroceryDetailPage(
+        { path: ['groceries/details/' + id ] }
+      )
+    )
   }
 
 }

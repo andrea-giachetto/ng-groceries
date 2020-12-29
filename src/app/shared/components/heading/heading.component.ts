@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-heading',
@@ -6,8 +6,15 @@ import { Component, OnInit } from '@angular/core';
     <header class="header">
       <img src="../../../assets/backgrounds/shopping-list.png">
       <div class="header--text">
-        <h3>Welcome back, <br> Valentina!</h3>
-        <p>Manage all your items in your lists.<br> Let's get it done!</p>
+        <h3 *ngIf="headingTitle; else defaultTitle">{{ headingTitle }}</h3>
+        <ng-template #defaultTitle>
+          <h3>Welcome back, <br> Valentina!</h3>
+        </ng-template>
+
+        <p *ngIf="deadline; else defaultDescription">{{ deadline | date }}</p>
+        <ng-template #defaultDescription>
+          <p>Manage all your items in your lists.<br> Let's get it done!</p>
+        </ng-template>
       </div>
     </header>
   `,
@@ -20,6 +27,11 @@ import { Component, OnInit } from '@angular/core';
   `]
 })
 export class HeadingComponent implements OnInit {
+
+  title: string;
+
+  @Input() headingTitle: string;
+  @Input() deadline: Date;
 
   constructor() { }
 

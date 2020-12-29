@@ -1,7 +1,10 @@
+import { addProduct } from './../../../features/groceries/store/actions/product.actions';
+import { Product } from './../../../model/product.model';
+import { NewProductComponent } from '../dialog/new-product.component';
 import { addGrocery } from '../../../features/groceries/store/actions/groceries.actions';
 import { Grocery } from '../../../model/grocery.model';
 import { Component, OnInit } from '@angular/core';
-import { NewGroceryComponent } from 'src/app/shared/components/dialog/new-grocery/new-grocery.component';
+import { NewGroceryComponent } from '../dialog/new-grocery.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 
@@ -9,13 +12,13 @@ import { Store } from '@ngrx/store';
   selector: 'app-fab-actions',
   template: `
     <div class="action" *ngIf="isClicked">
-      <div class="action--item" (click)="openDialog()">
+      <div class="action--item" (click)="openDialog('new-grocery')">
         <label>Add new list</label>
         <span>
           <img src="../../../assets/icons/dark/shopping-list.svg">
         </span>
       </div>
-      <div class="action--item">
+      <div class="action--item" (click)="openDialog('new-product')">
         <label>Add product</label>
         <span>
           <img src="../../../assets/icons/dark/products.svg">
@@ -49,9 +52,26 @@ export class FabActionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  openDialog() {
+  openDialog(type: string) {
     this.toggleActionsList();
 
+    switch(type) {
+      case 'new-grocery':
+        this.openNewGroceryDialog();
+      break;
+
+      case 'new-product':
+        this.openNewProductDialog()
+      break;
+    }
+
+  }
+
+  toggleActionsList() {
+    this.isClicked = !this.isClicked;
+  }
+
+  openNewGroceryDialog() {
     const dialogRef = this.dialog.open(NewGroceryComponent);
 
     dialogRef.afterClosed().subscribe((grocery: Grocery) => {
@@ -59,9 +79,12 @@ export class FabActionsComponent implements OnInit {
     });
   }
 
-  toggleActionsList() {
-    console.log('clicked')
-    this.isClicked = !this.isClicked;
+  openNewProductDialog() {
+    const dialogRef = this.dialog.open(NewProductComponent);
+
+    dialogRef.afterClosed().subscribe((product: Product) => {
+      this.store.dispatch(addProduct({ product }))
+    });
   }
 
 }

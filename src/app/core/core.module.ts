@@ -1,3 +1,4 @@
+import { ProductsEffects } from './../features/groceries/store/effects/products.effects';
 import { UiKitModule } from './../shared/ui-kit/ui-kit.module';
 import { reducers } from './../features/groceries/store/reducers/index';
 import { GroceriesEffects } from './../features/groceries/store/effects/groceries.effects';
@@ -23,6 +24,7 @@ import { RouterEffects } from './router/store/router.effects';
     }),
     EffectsModule.forRoot([
       GroceriesEffects,
+      ProductsEffects,
       RouterEffects
     ]),
     StoreRouterConnectingModule.forRoot({
