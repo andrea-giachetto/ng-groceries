@@ -16,7 +16,7 @@ export const productsReducer = createReducer(
   on(loadProductsSuccess, (state, action) => {
     return {
       ...state,
-      list: action.list
+      list: [...state.list,  ...action.list ]
     }
   }),
 

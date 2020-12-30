@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
           <img src="../../../assets/icons/dark/shopping-list.svg">
         </span>
       </div>
-      <div *ngIf="(activeGrocery$ | async).id" class="action--item" (click)="openDialog('new-product')">
+      <div *ngIf="activeGroceryId" class="action--item" (click)="openDialog('new-product')">
         <label>Add product</label>
         <span>
           <img src="../../../assets/icons/dark/products.svg">
@@ -46,16 +46,17 @@ import { Observable } from 'rxjs';
 })
 export class FabActionsComponent implements OnInit {
   isClicked: boolean = false;
-
-  activeGrocery$: Observable<Grocery> = this.store.pipe(
-    select('groceries', 'active'),
-    tap((item) => console.log(item)),
-  )
+  activeGroceryId: string;
 
   constructor(
     public dialog: MatDialog,
     private store: Store<AppState>
-    ) { }
+    ) {
+      this.store.pipe(
+        select('groceries', 'active'),
+        tap((item) => console.log(item)),
+      ).subscribe(grocery => this.activeGroceryId = grocery.id)
+    }
 
   ngOnInit(): void {
   }
@@ -89,6 +90,7 @@ export class FabActionsComponent implements OnInit {
     const dialogRef = this.dialog.open(NewProductComponent);
 
     dialogRef.afterClosed().subscribe((product: Product) => {
+      product = {...product, groceryId: this.activeGroceryId}
       this.store.dispatch(addProduct({ product }))
     });
   }

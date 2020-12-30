@@ -10,13 +10,13 @@
       "id": "AJYTHql"
     },
     {
-      "id": "2",
+      "id": "2aa",
       "name": "Migros",
       "state": "Done",
       "amount": 104.35
     },
     {
-      "id": "3",
+      "id": "aa3",
       "name": "Denner",
       "state": "Done",
       "amount": 84.23
@@ -27,19 +27,36 @@
       "id": "25w45t4h",
       "groceryId": "AJYTHql",
       "name": "Salmon",
-      "category": "fish"
+      "category": "fish",
+      "checked": false
     },
     {
       "id": "35sdd",
       "groceryId": "AJYTHql",
       "name": "Chicken",
-      "category": "meat"
+      "category": "meat",
+      "checked": false
     },
     {
       "id": "35sdd",
       "groceryId": "3",
       "name": "Chicken",
-      "category": "meat"
+      "category": "meat",
+      "checked": false
+    },
+    {
+      "name": "Apples",
+      "category": "veggie-fruit",
+      "checked": false,
+      "groceryId": "AJYTHql",
+      "id": "0tsm46b"
+    },
+    {
+      "name": "Cavoli ",
+      "category": "frozen",
+      "checked": false,
+      "groceryId": "aa3",
+      "id": "G8XFR_P"
     }
   ]
 }

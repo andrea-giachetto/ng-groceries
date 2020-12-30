@@ -11,7 +11,7 @@ import { of } from 'rxjs'
 @Injectable()
 export class ProductsEffects {
 
-  loadProducts$ = createEffect(
+  loadProductsByGroceryId$ = createEffect(
     () => this.actions$.pipe(
       ofType(loadProducts),
       switchMap(() => this.http.get<Product[]>(`${environment.BASE_API}/products`)
@@ -21,6 +21,16 @@ export class ProductsEffects {
           ))
     )
   )
+  // loadProductsByGroceryId$ = createEffect(
+  //   () => this.actions$.pipe(
+  //     ofType(loadProducts),
+  //     switchMap((action) => this.http.get<Product[]>(`${environment.BASE_API}/groceries/${action.id}/products`)
+  //         .pipe(
+  //           map(result => loadProductsSuccess({ list: result })),
+  //           catchError(() => of(loadProductsFailed()))
+  //         ))
+  //   )
+  // )
 
   addProduct$ = createEffect(
     () => this.actions$.pipe(

@@ -47,9 +47,7 @@ export class PageGroceriesListComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
-  ) {
-    this.store.dispatch(loadGroceries());
-   }
+  ) {}
 
   ngOnInit(): void {
   }

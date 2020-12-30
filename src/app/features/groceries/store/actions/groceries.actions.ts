@@ -31,7 +31,7 @@ export const loadGroceriesFailed = createAction(
 
 export const deleteGrocery = createAction(
   '[Grocery] delete',
-  props<{ id: number }>()
+  props<{ id: string }>()
 )
 
 export const setActiveGrocery = createAction(

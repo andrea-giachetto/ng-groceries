@@ -1,8 +1,10 @@
+import { AppState } from './../../../app.module';
 import { categories } from './../../categories';
 import { Product } from './../../../model/product.model';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-new-product-list',
@@ -56,7 +58,7 @@ export class NewProductComponent {
 
   constructor(
     public dialogRef: MatDialogRef<NewProductComponent>,
-  ) { }
+  ) {}
 
   submit(f: NgForm) {
     const product: Product = { ...f.value, checked: false } as Product;
