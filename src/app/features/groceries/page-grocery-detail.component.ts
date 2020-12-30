@@ -25,9 +25,7 @@ import { Store, select } from '@ngrx/store';
           <h3>{{ category.value }}</h3>
         </header>
         <!-- List of products corresponding to current category-->
-        <div *ngFor="let product of grocery.products">
-          <p *ngIf="product.category === category.value">{{ product.name }}</p>
-        </div>
+
       </section>
     </div>
   `,

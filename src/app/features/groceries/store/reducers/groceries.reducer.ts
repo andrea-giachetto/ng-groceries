@@ -1,3 +1,4 @@
+import { clearActiveGrocery } from './../actions/groceries.actions';
 import { addGrocerySuccess } from '../actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
 import { addGrocery, deleteGrocery, loadGroceriesSuccess, setActiveGrocery } from '../actions/groceries.actions';
@@ -41,6 +42,13 @@ export const groceriesReducer = createReducer(
     return {
       ...state,
     active: { ...action.item }
+    }
+  }),
+
+  on(clearActiveGrocery, (state, action) => {
+    return {
+      ...state,
+    active: {} as Grocery
     }
   }),
 

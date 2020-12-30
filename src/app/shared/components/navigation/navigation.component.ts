@@ -1,5 +1,9 @@
+import { clearActiveGrocery } from './../../../features/groceries/store/actions/groceries.actions';
+import { AppState } from './../../../app.module';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { i18nMetaToJSDoc } from '@angular/compiler/src/render3/view/i18n/meta';
 
 @Component({
   selector: 'app-navigation',
@@ -21,13 +25,17 @@ import { Router } from '@angular/router';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private store: Store<AppState>
+  ) { }
 
   ngOnInit(): void {
   }
 
   navigateTo(path?: string) {
     this.router.navigate([path])
+    this.store.dispatch(clearActiveGrocery())
   }
 
 }

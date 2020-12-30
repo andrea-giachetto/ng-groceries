@@ -4,89 +4,42 @@
   },
   "groceries": [
     {
-      "id": "1",
-      "name": "Coop",
+      "name": "Christmas Party",
+      "deadline": "2020-12-21T23:00:00.000Z",
       "state": "In progress",
-      "products": []
+      "id": "AJYTHql"
     },
     {
       "id": "2",
       "name": "Migros",
       "state": "Done",
-      "amount": 104.35,
-      "products": []
+      "amount": 104.35
     },
     {
       "id": "3",
       "name": "Denner",
       "state": "Done",
-      "amount": 84.23,
-      "products": [
-        {"name": "Salmon", "category": "fish", "checked": false},
-        {"name": "Chicken", "category": "meat", "checked": true},
-        {"name": "Apples", "category": "veggie-fruit", "checked": false}
-      ]
-    },
-    {
-      "name": "Why not",
-      "deadline": null,
-      "state": "In progress",
-      "id": "uhDwm7_",
-      "products": []
-    },
-    {
-      "name": "Christmas Party",
-      "deadline": "2020-12-21T23:00:00.000Z",
-      "state": "In progress",
-      "id": "AJYTHql",
-      "products": [
-        {"name": "Salmon", "category": "fish", "checked": false},
-        {"name": "Chicken", "category": "meat", "checked": true},
-        {"name": "Apples", "category": "veggie-fruit", "checked": false}
-      ]
-    },
-    {
-      "name": "rrrrrr",
-      "deadline": "2020-12-22T23:00:00.000Z",
-      "state": "In progress",
-      "id": "PV8UX3U"
+      "amount": 84.23
     }
   ],
   "products": [
     {
-      "id": "sdfqsd1",
+      "id": "25w45t4h",
+      "groceryId": "AJYTHql",
       "name": "Salmon",
       "category": "fish"
     },
     {
-      "id": "sdfqsd2",
+      "id": "35sdd",
+      "groceryId": "AJYTHql",
       "name": "Chicken",
       "category": "meat"
     },
     {
-      "id": "sdfqsd3",
-      "name": "Aubergenes",
-      "category": "veggie-fruit"
-    },
-    {
-      "id": "sdfqsd4",
-      "name": "Apples",
-      "category": "veggie-fruit"
-    },
-    {
-      "name": "merda secca",
-      "id": "wuh0r8V"
-    },
-    {
-      "name": "Merda 2",
-      "category": "utility",
-      "id": "iPs2ufB"
-    },
-    {
-      "id": "OApNTRH"
-    },
-    {
-      "id": "SY5lTNG"
+      "id": "35sdd",
+      "groceryId": "3",
+      "name": "Chicken",
+      "category": "meat"
     }
   ]
 }

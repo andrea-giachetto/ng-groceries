@@ -1,3 +1,5 @@
+import { tap, map } from 'rxjs/operators';
+import { AppState } from './../../../app.module';
 import { addProduct } from './../../../features/groceries/store/actions/product.actions';
 import { Product } from './../../../model/product.model';
 import { NewProductComponent } from '../dialog/new-product.component';
@@ -6,7 +8,8 @@ import { Grocery } from '../../../model/grocery.model';
 import { Component, OnInit } from '@angular/core';
 import { NewGroceryComponent } from '../dialog/new-grocery.component';
 import { MatDialog } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-fab-actions',
@@ -18,7 +21,7 @@ import { Store } from '@ngrx/store';
           <img src="../../../assets/icons/dark/shopping-list.svg">
         </span>
       </div>
-      <div class="action--item" (click)="openDialog('new-product')">
+      <div *ngIf="(activeGrocery$ | async).id" class="action--item" (click)="openDialog('new-product')">
         <label>Add product</label>
         <span>
           <img src="../../../assets/icons/dark/products.svg">
@@ -44,9 +47,14 @@ import { Store } from '@ngrx/store';
 export class FabActionsComponent implements OnInit {
   isClicked: boolean = false;
 
+  activeGrocery$: Observable<Grocery> = this.store.pipe(
+    select('groceries', 'active'),
+    tap((item) => console.log(item)),
+  )
+
   constructor(
     public dialog: MatDialog,
-    private store: Store<Grocery>
+    private store: Store<AppState>
     ) { }
 
   ngOnInit(): void {
@@ -54,7 +62,6 @@ export class FabActionsComponent implements OnInit {
 
   openDialog(type: string) {
     this.toggleActionsList();
-
     switch(type) {
       case 'new-grocery':
         this.openNewGroceryDialog();
@@ -64,7 +71,6 @@ export class FabActionsComponent implements OnInit {
         this.openNewProductDialog()
       break;
     }
-
   }
 
   toggleActionsList() {

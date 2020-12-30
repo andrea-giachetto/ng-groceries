@@ -59,7 +59,7 @@ export class NewProductComponent {
   ) { }
 
   submit(f: NgForm) {
-    const product: Product = { ...f.value } as Product;
+    const product: Product = { ...f.value, checked: false } as Product;
     this.dialogRef.close(product);
   }
 

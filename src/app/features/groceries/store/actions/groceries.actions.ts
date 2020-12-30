@@ -1,3 +1,4 @@
+import { Product } from './../../../../model/product.model';
 import { Grocery } from '../../../../model/grocery.model';
 import { createAction, props } from '@ngrx/store';
 
@@ -36,4 +37,32 @@ export const deleteGrocery = createAction(
 export const setActiveGrocery = createAction(
   '[Grocery] set active',
   props<{ item: Grocery }>()
+)
+
+export const clearActiveGrocery = createAction(
+  '[Grocery] clear active',
+)
+
+export const getProductsByCategory = createAction(
+  '[Grocery] get products by category',
+  props<{ category: string }>()
+)
+
+export const addProductToGrocery = createAction(
+  '[Grocery] add product to grocery',
+  props<{ product: Product, grocery: Partial<Grocery> }>()
+)
+
+export const addProductToGrocerySuccess = createAction(
+  '[Grocery] add product to grocery success',
+  props<{ product: Product, grocery: Partial<Grocery> }>()
+)
+
+export const addProductToGroceryFailed = createAction(
+  '[Grocery] add product to grocery failed',
+)
+
+export const toogleProductChecked = createAction(
+  '[Grocery] toogle product',
+  props<{ product: Product }>()
 )

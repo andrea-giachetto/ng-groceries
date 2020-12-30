@@ -1,3 +1,5 @@
+import { Product } from './../../../../model/product.model';
+import { addProductToGrocery, addProductToGrocerySuccess } from './../actions/groceries.actions';
 import { environment } from './../../../../../environments/environment';
 import { addGrocerySuccess, addGroceryFailed } from '../actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
