@@ -8,3 +8,5 @@ export interface Product {
   checked: boolean;
   //completed: boolean;
 }
+
+export type ProductCheckedState = Pick<Product, 'id' | 'checked'>

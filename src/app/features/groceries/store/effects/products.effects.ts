@@ -1,7 +1,8 @@
+import { ProductCheckedState } from './../../../../model/product.model';
 import { environment } from './../../../../../environments/environment';
 import { switchMap, map, catchError } from 'rxjs/operators';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { loadProducts, loadProductsSuccess, loadProductsFailed, addProduct, addProductSuccess, addProductFailed } from './../actions/product.actions';
+import { loadProducts, loadProductsSuccess, loadProductsFailed, addProduct, addProductSuccess, addProductFailed, toggleProductCheckStateSuccess, toggleProductCheckStateFailed, toggleProductCheckState } from './../actions/product.actions';
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/model/product.model';
@@ -40,6 +41,17 @@ export class ProductsEffects {
         .pipe(
           map(result => addProductSuccess({ product: result })),
           catchError(() => of(addProductFailed()))
+        ))
+    )
+  );
+
+  toggleProductCheckState$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(toggleProductCheckState),
+      switchMap((action) => this.http.patch<ProductCheckedState>(`${environment.BASE_API}/products/${action.product.id}`, {checked: action.product.checked})
+        .pipe(
+          map(res => toggleProductCheckStateSuccess({ product: res })),
+          catchError(() => of(toggleProductCheckStateFailed()))
         ))
     )
   )

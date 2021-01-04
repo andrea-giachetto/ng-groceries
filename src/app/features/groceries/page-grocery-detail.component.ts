@@ -1,5 +1,6 @@
+import { toggleProductCheckState } from './store/actions/product.actions';
 import { selectProductsByGroceryId } from './store/selectors/products.selectors';
-import { Product } from './../../model/product.model';
+import { Product, ProductCheckedState } from './../../model/product.model';
 import { categories } from './../../shared/categories';
 import { map } from 'rxjs/operators';
 import { selectGroceryByID } from './store/selectors/groceries.selectors';
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { MatSelectionList, MatSelectionListChange, MatListOption } from '@angular/material/list';
 
 @Component({
   selector: 'app-page-grocery-detail',
@@ -21,21 +23,21 @@ import { Observable } from 'rxjs';
     <!-- Should load all the products related to the grocery list -->
     <!-- <pre>{{ grocery | json }}</pre> -->
     <div class="safe-scroll">
-      <section *ngFor="let category of categoriesTmp">
+      <section *ngFor="let category of categoriesTmp; let i = index">
         <header>
           <img [src]="category.icon">
           <h3>{{ category.value | titlecase }}</h3>
         </header>
         <!-- List of products corresponding to current category-->
-        <mat-selection-list>
+        <mat-selection-list (selectionChange)="selectionChangeHandler($event)">
             <ng-container *ngFor="let product of (products$ | async)">
-              <mat-list-option *ngIf="product.category == category.value">
+              <mat-list-option
+                *ngIf="product.category == category.value"
+                [value]="product.id"
+                [selected]="product.checked">
                 {{ product.name }}
               </mat-list-option>
             </ng-container>
-            <!-- <ng-template *ngIf="product.category == category.value">
-            </ng-template> -->
-
         </mat-selection-list>
       </section>
       <pre>{{ products$ | async | json }}</pre>
@@ -72,5 +74,16 @@ export class PageGroceryDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  selectionChangeHandler(list: MatSelectionListChange) {
+    let option: MatListOption = list.options.pop();
+    let product: ProductCheckedState = {
+      id: option.value,
+      checked: option.selected
+    }
+    this.store.dispatch(
+      toggleProductCheckState({ product })
+    )
+  }
 
 }

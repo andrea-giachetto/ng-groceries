@@ -82,6 +82,7 @@ export class FabActionsComponent implements OnInit {
     const dialogRef = this.dialog.open(NewGroceryComponent);
 
     dialogRef.afterClosed().subscribe((grocery: Grocery) => {
+      if (grocery.name === "") return;
       this.store.dispatch(addGrocery({ grocery }))
     });
   }
@@ -90,6 +91,7 @@ export class FabActionsComponent implements OnInit {
     const dialogRef = this.dialog.open(NewProductComponent);
 
     dialogRef.afterClosed().subscribe((product: Product) => {
+      if (product.name === "") return;
       product = {...product, groceryId: this.activeGroceryId}
       this.store.dispatch(addProduct({ product }))
     });

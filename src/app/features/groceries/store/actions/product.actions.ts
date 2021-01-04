@@ -1,3 +1,4 @@
+import { ProductCheckedState } from './../../../../model/product.model';
 import { createAction, props } from '@ngrx/store';
 import { Product } from 'src/app/model/product.model';
 
@@ -30,10 +31,19 @@ export const addProductFailed = createAction(
 
 export const deleteProduct = createAction(
   '[Products] Delete',
-  props<{ id: number }>()
+  props<{ id: string }>()
 )
 
-export const toggleProductState = createAction(
+export const toggleProductCheckState = createAction(
   '[Products] Toggle state',
-  props<{ id: number, checked: boolean }>()
+  props<{ product: ProductCheckedState }>()
+)
+
+export const toggleProductCheckStateSuccess = createAction(
+  '[Products] Toggle state success',
+  props<{ product: ProductCheckedState }>()
+)
+
+export const toggleProductCheckStateFailed = createAction(
+  '[Products] Toggle state failed'
 )
