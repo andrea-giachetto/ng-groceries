@@ -1,3 +1,4 @@
+import { DeleteProductDialogComponent } from './components/dialog/delete-product.component';
 import { UiKitModule } from './ui-kit/ui-kit.module';
 import { FabActionsComponent } from './components/fab-actions/fab-actions.component';
 import { NewProductComponent } from './components/dialog/new-product.component';
@@ -6,6 +7,7 @@ import { HeadingComponent } from './components/heading/heading.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { DeleteGroceryListDialogComponent } from './components/dialog/delete-grocery-list.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     FabActionsComponent,
     NewGroceryComponent,
     NewProductComponent,
-    NavigationComponent
+    DeleteProductDialogComponent,
+    NavigationComponent,
+    DeleteGroceryListDialogComponent
   ],
   imports: [
     FormsModule,
@@ -24,11 +28,15 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     FabActionsComponent,
     NewGroceryComponent,
     NewProductComponent,
-    NavigationComponent
+    DeleteProductDialogComponent,
+    NavigationComponent,
+    DeleteGroceryListDialogComponent
   ],
   entryComponents: [
     NewGroceryComponent,
-    NewProductComponent
+    NewProductComponent,
+    DeleteProductDialogComponent,
+    DeleteGroceryListDialogComponent
   ]
 })
 export class SharedModule { }

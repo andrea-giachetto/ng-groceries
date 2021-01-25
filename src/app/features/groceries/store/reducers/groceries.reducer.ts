@@ -1,4 +1,4 @@
-import { clearActiveGrocery } from './../actions/groceries.actions';
+import { clearActiveGrocery, deleteGrocerySuccess } from './../actions/groceries.actions';
 import { addGrocerySuccess } from '../actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
 import { addGrocery, deleteGrocery, loadGroceriesSuccess, setActiveGrocery } from '../actions/groceries.actions';
@@ -31,10 +31,10 @@ export const groceriesReducer = createReducer(
     }
   }),
 
-  on(deleteGrocery, (state, action) => {
+  on(deleteGrocerySuccess, (state, action) => {
     return {
       ...state,
-      list: state.list.filter(item => item.id !== action.id )
+      list: state.list.filter(item => item.id !== action.grocery.id )
     }
   }),
 

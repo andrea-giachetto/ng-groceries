@@ -13,7 +13,7 @@ export const loadGroceriesSuccess = createAction(
 
 export const addGrocery = createAction(
   '[Grocery] add',
-  props<{ grocery: Grocery }>()
+  props<{ grocery: Partial<Grocery> }>()
 )
 
 export const addGrocerySuccess = createAction(
@@ -31,7 +31,16 @@ export const loadGroceriesFailed = createAction(
 
 export const deleteGrocery = createAction(
   '[Grocery] delete',
-  props<{ id: string }>()
+  props<{ grocery: Partial<Grocery> }>()
+)
+
+export const deleteGrocerySuccess = createAction(
+  '[Grocery] delete success',
+  props<{ grocery: Partial<Grocery> }>()
+)
+
+export const deleteGroceryFailed = createAction(
+  '[Grocery] delete failed'
 )
 
 export const setActiveGrocery = createAction(

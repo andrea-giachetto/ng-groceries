@@ -62,4 +62,23 @@ span.mat-option-text { display: flex; }
 span.mat-option-text img { margin: 0 10px 0 0; }
 
 /**/
-.safe-scroll { padding-bottom: 10vh;}
+.safe-scroll {
+  padding-bottom: 10vh;
+  border-radius: 16px;
+  padding: 30px 15px 10vh 15px;
+  position: relative;
+  top: -3%;
+  background-color: white;
+}
+
+// .mat-icon-no-color {
+//   color: white;
+// }
+/* Note: If you're using an SVG icon, you should make the class target the `<svg>` element */
+// .mat-icon-no-color svg {
+//   fill: white;
+// }
+
+.mat-list-base .mat-list-item .mat-list-item-content-reverse, .mat-list-base .mat-list-option .mat-list-item-content-reverse {
+  transition: transform ease-in .2s;
+}

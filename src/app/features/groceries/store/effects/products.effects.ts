@@ -1,8 +1,8 @@
 import { ProductCheckedState } from './../../../../model/product.model';
 import { environment } from './../../../../../environments/environment';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, exhaustMap } from 'rxjs/operators';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { loadProducts, loadProductsSuccess, loadProductsFailed, addProduct, addProductSuccess, addProductFailed, toggleProductCheckStateSuccess, toggleProductCheckStateFailed, toggleProductCheckState } from './../actions/product.actions';
+import { loadProducts, loadProductsSuccess, loadProductsFailed, addProduct, addProductSuccess, addProductFailed, toggleProductCheckStateSuccess, toggleProductCheckStateFailed, toggleProductCheckState, deleteProduct, deleteProductSuccess, deleteProductFailed } from './../actions/product.actions';
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Product } from 'src/app/model/product.model';
@@ -22,16 +22,6 @@ export class ProductsEffects {
           ))
     )
   )
-  // loadProductsByGroceryId$ = createEffect(
-  //   () => this.actions$.pipe(
-  //     ofType(loadProducts),
-  //     switchMap((action) => this.http.get<Product[]>(`${environment.BASE_API}/groceries/${action.id}/products`)
-  //         .pipe(
-  //           map(result => loadProductsSuccess({ list: result })),
-  //           catchError(() => of(loadProductsFailed()))
-  //         ))
-  //   )
-  // )
 
   addProduct$ = createEffect(
     () => this.actions$.pipe(
@@ -44,6 +34,19 @@ export class ProductsEffects {
         ))
     )
   );
+
+  deleteProduct$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(deleteProduct),
+      exhaustMap(
+        (action) => this.http.delete<Product>(`${environment.BASE_API}/products/${action.product.id}`)
+          .pipe(
+            map(() => deleteProductSuccess({ product: action.product })),
+            catchError(() => of(deleteProductFailed()))
+          )
+      )
+    )
+  )
 
   toggleProductCheckState$ = createEffect(
     () => this.actions$.pipe(

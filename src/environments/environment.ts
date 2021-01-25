@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  BASE_API: 'http://192.168.8.113:3001'
+  BASE_API: 'http://192.168.8.113:3001',
+  BASE_API_PUBLIC: 'http://localhost:3001'
 };
 
 /*

@@ -14,12 +14,6 @@
       "name": "Migros",
       "state": "Done",
       "amount": 104.35
-    },
-    {
-      "id": "aa3",
-      "name": "Denner",
-      "state": "Done",
-      "amount": 84.23
     }
   ],
   "products": [
@@ -31,60 +25,46 @@
       "checked": false
     },
     {
-      "id": "35sdd",
-      "groceryId": "AJYTHql",
-      "name": "Chicken",
-      "category": "meat",
-      "checked": false
-    },
-    {
-      "id": "35sdd",
-      "groceryId": "3",
-      "name": "Chicken",
-      "category": "meat",
-      "checked": false
-    },
-    {
       "name": "Apples",
       "category": "veggie-fruit",
-      "checked": true,
+      "checked": false,
       "groceryId": "AJYTHql",
       "id": "0tsm46b"
     },
     {
-      "name": "Cavoli ",
-      "category": "frozen",
-      "checked": false,
-      "groceryId": "aa3",
-      "id": "G8XFR_P"
-    },
-    {
       "name": "Toilette paper",
       "category": "utility",
-      "checked": false,
+      "checked": true,
       "groceryId": "AJYTHql",
       "id": "Lvke2t9"
     },
     {
-      "name": "Pork Steak",
-      "category": "meat",
-      "checked": false,
-      "groceryId": "AJYTHql",
-      "id": "OSm0Q0x"
-    },
-    {
       "name": "Orata",
       "category": "fish",
-      "checked": false,
+      "checked": true,
       "groceryId": "AJYTHql",
       "id": "Z7NlJs2"
     },
     {
       "name": "Scallops",
       "category": "frozen",
-      "checked": false,
+      "checked": true,
       "groceryId": "AJYTHql",
       "id": "jQ4A_Gs"
+    },
+    {
+      "name": "Swiffer",
+      "category": "utility",
+      "checked": false,
+      "groceryId": "AJYTHql",
+      "id": "7chldIC"
+    },
+    {
+      "name": "Pork Steak",
+      "category": "meat",
+      "checked": false,
+      "groceryId": "AJYTHql",
+      "id": "Q2u7eXa"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { addProductSuccess, loadProductsSuccess, toggleProductCheckStateSuccess } from './../actions/product.actions';
+import { addProductSuccess, deleteProductSuccess, loadProductsSuccess, toggleProductCheckStateSuccess } from './../actions/product.actions';
 import { createReducer, on } from '@ngrx/store';
 import { Product } from './../../../../model/product.model';
 
@@ -24,6 +24,13 @@ export const productsReducer = createReducer(
     return {
       ...state,
       list: [...state.list, { ...action.product } ]
+    }
+  }),
+
+  on(deleteProductSuccess, (state, action) => {
+    return {
+      ...state,
+      list: state.list.filter((product) => action.product.id !== product.id)
     }
   }),
 

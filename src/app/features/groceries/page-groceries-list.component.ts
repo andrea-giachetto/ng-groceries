@@ -1,11 +1,13 @@
+import { MatDialog } from '@angular/material/dialog';
 import * as RouterAction from './../../core/router/store/router.actions';
 import { selectAllGroceries } from './store/selectors/groceries.selectors';
 import { Grocery } from '../../model/grocery.model';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { loadGroceries, setActiveGrocery } from './store/actions/groceries.actions';
+import * as GroceryActions from './store/actions/groceries.actions';
 import { AppState } from 'src/app/app.module';
+import { DeleteGroceryListDialogComponent } from 'src/app/shared/components/dialog/delete-grocery-list.component';
 
 @Component({
   selector: 'app-page-shopping-list',
@@ -15,7 +17,11 @@ import { AppState } from 'src/app/app.module';
     <div *ngIf="(groceries$ | async).length; else noItems">
 
     <mat-selection-list [multiple]="false">
-        <mat-list-option *ngFor="let grocery of (groceries$ | async)" (click)="goToDetailPage(grocery)">
+        <mat-list-option
+          *ngFor="let grocery of (groceries$ | async)"
+          (click)="goToDetailPage(grocery)"
+          (swipeRight)="deleteGrocery(grocery, $event)"
+          >
           {{grocery.name}}
           <span>
             <label [ngClass]="grocery.state === 'In progress' ? 'in-progress' : 'done'">{{grocery.state}}</label>
@@ -47,18 +53,38 @@ export class PageGroceriesListComponent implements OnInit {
 
   constructor(
     private store: Store<AppState>,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
   }
 
   goToDetailPage(grocery: Grocery) {
-    this.store.dispatch(setActiveGrocery({ item: grocery }))
+    this.store.dispatch(GroceryActions.setActiveGrocery({ item: grocery }))
     this.store.dispatch(
       RouterAction.goToGroceryDetailPage(
         { path: ['groceries/details/' + grocery.id ] }
       )
     )
+  }
+
+  deleteGrocery(grocery: Grocery, $event: MouseEvent | TouchEvent) {
+    let element = ($event.target as HTMLDivElement).parentElement;
+    element.style.background = 'red';
+    console.log("swiped right: ", $event);
+    // open dialog
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(DeleteGroceryListDialogComponent);
+
+      dialogRef.afterClosed().subscribe((result: boolean) => {
+        if (result) {
+          console.log("delete current element", grocery);
+          this.store.dispatch(GroceryActions.deleteGrocery({ grocery }))
+        } else {
+          element.style.background = '';
+        }
+      })
+    }, 500)
   }
 
 }

@@ -31,7 +31,16 @@ export const addProductFailed = createAction(
 
 export const deleteProduct = createAction(
   '[Products] Delete',
-  props<{ id: string }>()
+  props<{ product: Partial<Product> }>()
+)
+
+export const deleteProductSuccess = createAction(
+  '[Products] Delete success',
+  props<{ product: Partial<Product> }>()
+)
+
+export const deleteProductFailed = createAction(
+  '[Products] Delete failed'
 )
 
 export const toggleProductCheckState = createAction(

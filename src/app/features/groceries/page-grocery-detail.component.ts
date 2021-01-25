@@ -1,4 +1,6 @@
-import { toggleProductCheckState } from './store/actions/product.actions';
+import { DeleteProductDialogComponent } from './../../shared/components/dialog/delete-product.component';
+import { MatDialog } from '@angular/material/dialog';
+import * as ProductActions from './store/actions/product.actions';
 import { selectProductsByGroceryId } from './store/selectors/products.selectors';
 import { Product, ProductCheckedState } from './../../model/product.model';
 import { categories } from './../../shared/categories';
@@ -6,8 +8,8 @@ import { map } from 'rxjs/operators';
 import { selectGroceryByID } from './store/selectors/groceries.selectors';
 import { Grocery } from './../../model/grocery.model';
 import { AppState } from './../../app.module';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { MatSelectionList, MatSelectionListChange, MatListOption } from '@angular/material/list';
@@ -17,30 +19,34 @@ import { MatSelectionList, MatSelectionListChange, MatListOption } from '@angula
   template: `
     <app-heading
       [headingTitle]="grocery.name"
-      [deadline]="grocery.deadline">
+      [deadline]="grocery.deadline"
+      [mode]="'detail'"
+      >
     </app-heading>
 
-    <!-- Should load all the products related to the grocery list -->
-    <!-- <pre>{{ grocery | json }}</pre> -->
     <div class="safe-scroll">
-      <section *ngFor="let category of categoriesTmp; let i = index">
+      <section *ngFor="let category of categoriesTmp;">
+
         <header>
           <img [src]="category.icon">
           <h3>{{ category.value | titlecase }}</h3>
         </header>
-        <!-- List of products corresponding to current category-->
+
         <mat-selection-list (selectionChange)="selectionChangeHandler($event)">
-            <ng-container *ngFor="let product of (products$ | async)">
+            <ng-container *ngFor="let product of (products$ | async); let i = index">
               <mat-list-option
-                *ngIf="product.category == category.value"
-                [value]="product.id"
-                [selected]="product.checked">
+              color="primary"
+              *ngIf="product.category == category.value"
+              [value]="product.id"
+              [selected]="product.checked"
+              (swiperight)="swipeRightHandler(product, $event)"
+              >
                 {{ product.name }}
               </mat-list-option>
             </ng-container>
         </mat-selection-list>
+
       </section>
-      <pre>{{ products$ | async | json }}</pre>
     </div>
   `,
   styles: [`
@@ -51,6 +57,9 @@ import { MatSelectionList, MatSelectionListChange, MatListOption } from '@angula
   `]
 })
 export class PageGroceryDetailComponent implements OnInit {
+  // @ViewChild('deleteProduct', {static: true}) deleteProduct: HTMLElement;
+  showDelete: boolean = false;
+
   id: string;
   grocery: Grocery;
   categoriesTmp = categories;
@@ -58,6 +67,7 @@ export class PageGroceryDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    public dialog: MatDialog,
     private store: Store<AppState>
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -82,8 +92,27 @@ export class PageGroceryDetailComponent implements OnInit {
       checked: option.selected
     }
     this.store.dispatch(
-      toggleProductCheckState({ product })
+      ProductActions.toggleProductCheckState({ product })
     )
+  }
+
+  swipeRightHandler(product: Product, $event: MouseEvent | TouchEvent) {
+    let element = ($event.target as HTMLDivElement).parentElement;
+    element.style.background = 'red';
+    console.log("swiped right: ", $event);
+    // open dialog
+    setTimeout(() => {
+      const dialogRef = this.dialog.open(DeleteProductDialogComponent);
+
+      dialogRef.afterClosed().subscribe((result: boolean) => {
+        if (result) {
+          console.log("delete current element", product);
+          this.store.dispatch(ProductActions.deleteProduct({ product }))
+        } else {
+          element.style.background = '';
+        }
+      })
+    }, 500)
   }
 
 }
