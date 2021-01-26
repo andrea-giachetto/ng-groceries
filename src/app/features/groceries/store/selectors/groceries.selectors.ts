@@ -1,3 +1,4 @@
+import { GroceriesState } from './../reducers/groceries.reducer';
 import { Grocery } from './../../../../model/grocery.model';
 import { createSelector } from '@ngrx/store';
 import { AppState } from './../../../../app.module';
@@ -8,3 +9,5 @@ export const selectGroceryByID = createSelector(
   selectAllGroceries,
   (state: Grocery[], props) => state.filter(grocery => grocery.id === props.id)
 )
+
+export const selectActiveGrocery = (state: AppState) : Grocery => state.groceries.active;

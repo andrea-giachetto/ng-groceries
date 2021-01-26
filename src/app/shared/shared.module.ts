@@ -1,3 +1,4 @@
+import { CompleteGroceryComponent } from './components/dialog/complete-grocery.component';
 import { DeleteProductDialogComponent } from './components/dialog/delete-product.component';
 import { UiKitModule } from './ui-kit/ui-kit.module';
 import { FabActionsComponent } from './components/fab-actions/fab-actions.component';
@@ -17,7 +18,8 @@ import { DeleteGroceryListDialogComponent } from './components/dialog/delete-gro
     NewProductComponent,
     DeleteProductDialogComponent,
     NavigationComponent,
-    DeleteGroceryListDialogComponent
+    DeleteGroceryListDialogComponent,
+    CompleteGroceryComponent
   ],
   imports: [
     FormsModule,
@@ -30,13 +32,15 @@ import { DeleteGroceryListDialogComponent } from './components/dialog/delete-gro
     NewProductComponent,
     DeleteProductDialogComponent,
     NavigationComponent,
-    DeleteGroceryListDialogComponent
+    DeleteGroceryListDialogComponent,
+    CompleteGroceryComponent
   ],
   entryComponents: [
     NewGroceryComponent,
     NewProductComponent,
     DeleteProductDialogComponent,
-    DeleteGroceryListDialogComponent
+    DeleteGroceryListDialogComponent,
+    CompleteGroceryComponent
   ]
 })
 export class SharedModule { }

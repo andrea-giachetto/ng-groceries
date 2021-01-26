@@ -6,8 +6,9 @@
     {
       "name": "Christmas Party",
       "deadline": "2020-12-21T23:00:00.000Z",
-      "state": "In progress",
-      "id": "AJYTHql"
+      "state": "Done",
+      "id": "AJYTHql",
+      "amount": 81
     },
     {
       "id": "2aa",

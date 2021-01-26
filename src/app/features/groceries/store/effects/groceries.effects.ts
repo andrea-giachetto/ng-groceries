@@ -1,9 +1,9 @@
 import { Product } from './../../../../model/product.model';
-import { addProductToGrocery, addProductToGrocerySuccess, deleteGrocery, deleteGrocerySuccess, deleteGroceryFailed } from './../actions/groceries.actions';
+import { addProductToGrocery, addProductToGrocerySuccess, deleteGrocery, deleteGrocerySuccess, deleteGroceryFailed, setGroceryComplete} from './../actions/groceries.actions';
 import { environment } from './../../../../../environments/environment';
 import { addGrocerySuccess, addGroceryFailed } from '../actions/groceries.actions';
 import { Grocery } from '../../../../model/grocery.model';
-import { loadGroceries, loadGroceriesSuccess, loadGroceriesFailed, addGrocery } from '../actions/groceries.actions';
+import { loadGroceries, loadGroceriesSuccess, loadGroceriesFailed, addGrocery, setGroceryCompleteSuccess, setGroceryCompleteFailed } from '../actions/groceries.actions';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import { createEffect, Actions, ofType } from '@ngrx/effects'
@@ -45,6 +45,19 @@ export class GroceriesEffects {
           map((result) => deleteGrocerySuccess({ grocery: action.grocery })),
           catchError(() => of(deleteGroceryFailed()))
         )
+      )
+    )
+  )
+
+  setGroceryComplete$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(setGroceryComplete),
+      exhaustMap(
+        (action) => this.http.patch<Grocery>(`${environment.BASE_API}/groceries/${action.grocery.id}`, action.grocery)
+          .pipe(
+            map( (grocery) => setGroceryCompleteSuccess({ grocery })),
+            catchError(() => of(setGroceryCompleteFailed()))
+          )
       )
     )
   )

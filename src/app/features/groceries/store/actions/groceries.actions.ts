@@ -52,11 +52,6 @@ export const clearActiveGrocery = createAction(
   '[Grocery] clear active',
 )
 
-export const getProductsByCategory = createAction(
-  '[Grocery] get products by category',
-  props<{ category: string }>()
-)
-
 export const addProductToGrocery = createAction(
   '[Grocery] add product to grocery',
   props<{ product: Product, grocery: Partial<Grocery> }>()
@@ -74,4 +69,18 @@ export const addProductToGroceryFailed = createAction(
 export const toogleProductChecked = createAction(
   '[Grocery] toogle product',
   props<{ product: Product }>()
+)
+
+export const setGroceryComplete = createAction(
+  '[Grocery] set completed',
+  props<{ grocery: Partial<Grocery> }>()
+)
+
+export const setGroceryCompleteSuccess = createAction(
+  '[Grocery] set completed success',
+  props<{ grocery: Partial<Grocery> }>()
+)
+
+export const setGroceryCompleteFailed = createAction(
+  '[Grocery] set completed failed'
 )

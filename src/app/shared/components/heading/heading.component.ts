@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-heading',
@@ -30,7 +30,7 @@ import { Component, OnInit, Input } from '@angular/core';
           <mat-icon>delete</mat-icon>
           <span>Delete</span>
         </button>
-        <button mat-menu-item>
+        <button mat-menu-item (click)="onSetListComplete.emit(true)">
           <mat-icon>check</mat-icon>
           <span>Complete</span>
         </button>
@@ -54,6 +54,7 @@ export class HeadingComponent implements OnInit {
   @Input() headingTitle: string;
   @Input() deadline: Date;
   @Input() mode: string;
+  @Output() onSetListComplete: EventEmitter<boolean> = new EventEmitter();
   backgroundUrl: string;
 
   constructor() {

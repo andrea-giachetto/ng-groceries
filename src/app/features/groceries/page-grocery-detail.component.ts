@@ -1,3 +1,4 @@
+import { CompleteGroceryComponent } from './../../shared/components/dialog/complete-grocery.component';
 import { DeleteProductDialogComponent } from './../../shared/components/dialog/delete-product.component';
 import { MatDialog } from '@angular/material/dialog';
 import * as ProductActions from './store/actions/product.actions';
@@ -5,7 +6,7 @@ import { selectProductsByGroceryId } from './store/selectors/products.selectors'
 import { Product, ProductCheckedState } from './../../model/product.model';
 import { categories } from './../../shared/categories';
 import { map } from 'rxjs/operators';
-import { selectGroceryByID } from './store/selectors/groceries.selectors';
+import { selectGroceryByID, selectActiveGrocery } from './store/selectors/groceries.selectors';
 import { Grocery } from './../../model/grocery.model';
 import { AppState } from './../../app.module';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -13,6 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { MatSelectionList, MatSelectionListChange, MatListOption } from '@angular/material/list';
+import { setGroceryComplete } from './store/actions/groceries.actions';
 
 @Component({
   selector: 'app-page-grocery-detail',
@@ -21,6 +23,7 @@ import { MatSelectionList, MatSelectionListChange, MatListOption } from '@angula
       [headingTitle]="grocery.name"
       [deadline]="grocery.deadline"
       [mode]="'detail'"
+      (onSetListComplete)="setListCompleteHandler($event)"
       >
     </app-heading>
 
@@ -57,8 +60,6 @@ import { MatSelectionList, MatSelectionListChange, MatListOption } from '@angula
   `]
 })
 export class PageGroceryDetailComponent implements OnInit {
-  // @ViewChild('deleteProduct', {static: true}) deleteProduct: HTMLElement;
-  showDelete: boolean = false;
 
   id: string;
   grocery: Grocery;
@@ -113,6 +114,21 @@ export class PageGroceryDetailComponent implements OnInit {
         }
       })
     }, 500)
+  }
+
+  setListCompleteHandler($event) {
+    console.log("setListCompleteHandler: ", $event)
+    if ($event) {
+      const dialogRef = this.dialog.open(CompleteGroceryComponent);
+
+      dialogRef.afterClosed().subscribe(({ amount }) => {
+        console.log(amount);
+        if (amount) {
+
+          this.store.dispatch(setGroceryComplete({ grocery: {...this.grocery, amount, state: 'Done'}}))
+        }
+      })
+    }
   }
 
 }
